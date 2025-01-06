@@ -84,6 +84,11 @@ fun ArticleScreen(
         FunctionalityNotAvailablePopup { showDialog = false }
     }
 
+    // 提供app基本結構組件
+    // topBar
+    // bottomBar
+    // floatingActionButton
+    // drawerContent
     Scaffold(
         topBar = {
             InsetAwareTopAppBar(
