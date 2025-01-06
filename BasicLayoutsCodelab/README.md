@@ -20,6 +20,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
+![image](https://github.com/user-attachments/assets/ca187bbd-45f0-4de0-8c45-2db1087a86f7)
 
 ## Image asset attributions
 
