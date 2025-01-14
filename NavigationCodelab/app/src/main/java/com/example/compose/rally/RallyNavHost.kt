@@ -16,15 +16,24 @@
 
 package com.example.compose.rally
 
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.ComposeNavigator
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import com.example.compose.rally.ui.accounts.AccountsScreen
 import com.example.compose.rally.ui.accounts.SingleAccountScreen
 import com.example.compose.rally.ui.bills.BillsScreen
+import com.example.compose.rally.ui.components.RallyTabRow
 import com.example.compose.rally.ui.overview.OverviewScreen
 
 @Composable
@@ -91,4 +100,14 @@ fun NavHostController.navigateSingleTopTo(route: String) =
 
 private fun NavHostController.navigateToSingleAccount(accountType: String) {
     this.navigateSingleTopTo("${SingleAccount.route}/$accountType")
+}
+
+@Preview
+@Composable
+fun RallyNavHostPreview() {
+    val navController = rememberNavController()
+
+    RallyNavHost(
+        navController = navController,
+    )
 }

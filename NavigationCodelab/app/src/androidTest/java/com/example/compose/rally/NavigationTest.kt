@@ -29,47 +29,62 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
+// 測試類，用於驗證 Jetpack Compose 應用的導航邏輯
 class NavigationTest {
 
+    // 規則：啟動 Jetpack Compose 測試環境
     @get:Rule
     val composeTestRule = createComposeRule()
+
+    // 用於導航測試的 NavHostController
     lateinit var navController: TestNavHostController
 
+    // 初始化測試導航主機
     @Before
     fun setupRallyNavHost() {
         composeTestRule.setContent {
-            // Creates a TestNavHostController
+            // 創建一個 TestNavHostController 來模擬導航控制
             navController = TestNavHostController(LocalContext.current)
-            // Sets a ComposeNavigator to the navController so it can navigate through composables
+            // 添加 ComposeNavigator，允許導航到 Composable 組件
             navController.navigatorProvider.addNavigator(ComposeNavigator())
+            // 初始化應用的導航主機，並將 navController 傳入
             RallyNavHost(navController = navController)
         }
     }
 
+    // 測試：驗證起始目的地是否為 "Overview Screen"
     @Test
     fun rallyNavHost_verifyOverviewStartDestination() {
+        // 查找具有 "Overview Screen" ContentDescription 的節點，並檢查是否顯示
         composeTestRule
             .onNodeWithContentDescription("Overview Screen")
-            .assertIsDisplayed()
+            .assertIsDisplayed() // 驗證此節點是否在屏幕上顯示
     }
 
+    // 測試：點擊 "All Accounts" 按鈕後，是否正確導航到 "Accounts Screen"
     @Test
     fun rallyNavHost_clickAllAccount_navigatesToAccounts() {
+        // 查找 "All Accounts" 的節點並模擬點擊
         composeTestRule
             .onNodeWithContentDescription("All Accounts")
             .performClick()
 
+        // 驗證是否導航到了 "Accounts Screen"
         composeTestRule
             .onNodeWithContentDescription("Accounts Screen")
-            .assertIsDisplayed()
+            .assertIsDisplayed() // 確認 "Accounts Screen" 是否顯示
     }
 
+    // 測試：點擊 "All Bills" 按鈕後，是否正確導航到 "bills" 路徑
     @Test
     fun rallyNavHost_clickAllBills_navigateToBills() {
+        // 滾動到 "All Bills" 的節點並模擬點擊
         composeTestRule.onNodeWithContentDescription("All Bills")
-            .performScrollTo()
-            .performClick()
+            .performScrollTo() // 確保節點在屏幕上可見
+            .performClick()    // 模擬點擊操作
+
+        // 檢查當前導航控制器的路徑是否為 "bills"
         val route = navController.currentBackStackEntry?.destination?.route
-        assertEquals(route, "bills")
+        assertEquals(route, "bills") // 驗證當前路徑是否正確
     }
 }

@@ -16,6 +16,7 @@
 
 package com.example.compose.rally.ui.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -28,10 +29,17 @@ import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.compose.rally.R
+import com.example.compose.rally.data.UserData
 
 /**
  * Generic component used by the accounts and bills screens to show a chart and a list of items.
@@ -80,4 +88,28 @@ fun <T> StatementBody(
             }
         }
     }
+}
+
+
+@Preview
+@Composable
+fun StatementBodyPreview(){
+    val amountsTotal = remember { UserData.accounts.map { account -> account.balance }.sum() }
+
+    StatementBody(
+        modifier = Modifier.semantics { contentDescription = "Accounts Screen" },
+        items = UserData.accounts,
+        amounts = { account -> account.balance },
+        colors = { account -> account.color },
+        amountsTotal = amountsTotal,
+        circleLabel = stringResource(R.string.total),
+        rows = { account ->
+            AccountRow(
+                name = account.name,
+                number = account.number,
+                amount = account.balance,
+                color = account.color
+            )
+        }
+    )
 }

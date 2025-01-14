@@ -26,10 +26,13 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.compose.rally.ui.theme.RallyDialogThemeOverlay
+import java.util.Locale
 
 @Composable
 fun RallyAlertDialog(
@@ -59,4 +62,15 @@ fun RallyAlertDialog(
             }
         )
     }
+}
+
+@Preview
+@Composable
+fun RallyAlertDialogPreview() {
+    val alertMessage = "Heads up, you've used up 90% of your Shopping budget for this month."
+    RallyAlertDialog(
+        {},
+        bodyText = alertMessage,
+        buttonText = "Dismiss".uppercase(Locale.getDefault())
+    )
 }

@@ -43,9 +43,15 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+import com.example.compose.rally.Accounts
 import com.example.compose.rally.RallyDestination
+import com.example.compose.rally.navigateSingleTopTo
+import com.example.compose.rally.rallyTabRowScreens
 import java.util.Locale
 
 @Composable
@@ -117,6 +123,43 @@ private fun RallyTab(
         }
     }
 }
+
+@Preview
+@Composable
+fun RallyTabRowPreview(){
+    val navController = rememberNavController()
+    val currentBackStack by navController.currentBackStackEntryAsState()
+    val currentDestination = currentBackStack?.destination
+    val currentScreen =
+        rallyTabRowScreens.find { it.route == currentDestination?.route } ?: Accounts
+    RallyTabRow(allScreens = rallyTabRowScreens,
+        onTabSelected = { newScreen ->
+            navController.navigateSingleTopTo(newScreen.route)
+        },
+        currentScreen = currentScreen
+    )
+}
+
+@Preview
+@Composable
+fun RallyTabPreview(){
+    val navController = rememberNavController()
+    val currentBackStack by navController.currentBackStackEntryAsState()
+    val currentDestination = currentBackStack?.destination
+    val currentScreen =
+        rallyTabRowScreens.find { it.route == currentDestination?.route } ?: Accounts
+    Row(Modifier.selectableGroup()) {
+        rallyTabRowScreens.forEach { screen ->
+            RallyTab(
+                text = screen.route,
+                icon = screen.icon,
+                onSelected = {},
+                selected = currentScreen == screen
+            )
+        }
+    }
+}
+
 
 private val TabHeight = 56.dp
 private const val InactiveTabOpacity = 0.60f

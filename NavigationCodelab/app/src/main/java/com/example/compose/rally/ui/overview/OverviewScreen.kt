@@ -48,6 +48,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.compose.rally.R
 import com.example.compose.rally.data.UserData
@@ -113,6 +114,12 @@ private fun AlertCard() {
     }
 }
 
+@Preview
+@Composable
+fun AlertCardPreview() {
+    AlertCard()
+}
+
 @Composable
 private fun AlertHeader(onClickSeeAll: () -> Unit) {
     Row(
@@ -137,6 +144,12 @@ private fun AlertHeader(onClickSeeAll: () -> Unit) {
             )
         }
     }
+}
+
+@Preview
+@Composable
+fun AlertHeaderPreview() {
+    AlertHeader {}
 }
 
 @Composable
@@ -165,6 +178,12 @@ private fun AlertItem(message: String) {
             Icon(Icons.AutoMirrored.Filled.Sort, contentDescription = null)
         }
     }
+}
+
+@Preview
+@Composable
+fun AlertItemPreview() {
+    AlertItem("test")
 }
 
 /**
@@ -245,6 +264,12 @@ private fun AccountsCard(onClickSeeAll: () -> Unit, onAccountClick: (String) -> 
     }
 }
 
+@Preview
+@Composable
+fun AccountsCardPreview() {
+    AccountsCard({}, {})
+}
+
 /**
  * The Bills card within the Rally Overview screen.
  */
@@ -268,6 +293,13 @@ private fun BillsCard(onClickSeeAll: () -> Unit) {
     }
 }
 
+@Preview
+@Composable
+fun BillsCardPreview() {
+    BillsCard {}
+}
+
+
 @Composable
 private fun SeeAllButton(modifier: Modifier = Modifier, onClick: () -> Unit) {
     TextButton(
@@ -280,6 +312,20 @@ private fun SeeAllButton(modifier: Modifier = Modifier, onClick: () -> Unit) {
     }
 }
 
+@Preview
+@Composable
+fun SeeAllButtonPreview() {
+    SeeAllButton {}
+}
+
+
 private val RallyDefaultPadding = 12.dp
 
 private const val SHOWN_ITEMS = 3
+
+
+@Preview
+@Composable
+fun OverviewScreenPreview() {
+    OverviewScreen()
+}
