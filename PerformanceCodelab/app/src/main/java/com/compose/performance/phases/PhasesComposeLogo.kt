@@ -31,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.layout.onPlaced
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.util.trace
@@ -84,3 +85,9 @@ fun logoPosition_end(size: IntSize, logoSize: Size): State<IntOffset> =
     }
 
 internal const val MOVE_SPEED = 10
+
+@Preview
+@Composable
+fun PhasesComposeLogoPreview() {
+    PhasesComposeLogo()
+}

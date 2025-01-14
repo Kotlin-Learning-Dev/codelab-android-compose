@@ -49,12 +49,15 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.tracing.trace
 import com.compose.performance.R
 import com.example.android.compose.recomposehighlighter.recomposeHighlighter
 import java.time.LocalDate
+
+
 
 @Composable
 fun StabilityScreen(viewModel: StabilityViewModel = viewModel()) {
@@ -166,4 +169,11 @@ fun StabilityItemRow(
             )
         }
     }
+}
+
+
+@Preview
+@Composable
+fun StabilityScreenPreview(){
+    StabilityScreen()
 }

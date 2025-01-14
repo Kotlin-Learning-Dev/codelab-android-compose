@@ -46,6 +46,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTagsAsResourceId
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.compose.performance.accelerate.AccelerateHeavyScreen
@@ -53,6 +54,18 @@ import com.compose.performance.phases.PhasesAnimatedShape
 import com.compose.performance.phases.PhasesComposeLogo
 import com.compose.performance.stability.StabilityScreen
 import com.compose.performance.ui.theme.PerformanceWorkshopTheme
+
+
+@Preview(showBackground = true)
+@Composable
+fun PerformanceCodeLabScreenPreview() {
+    PerformanceWorkshopTheme {
+        PerformanceCodeLabScreen(
+            selectedPage = TaskScreen.StabilityList, // 提供默認選中的頁面
+            onPageSelected = {}
+        )
+    }
+}
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalComposeUiApi::class)
